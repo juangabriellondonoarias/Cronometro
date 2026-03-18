@@ -13,13 +13,12 @@ export class App implements OnDestroy {
 
   tiempoActual: number = 0;
   estaCorriendo: boolean = false;
-  mensajeFinal: string  = '';
 
   private suscripcion?: Subscription;
 
   constructor(private cdr: ChangeDetectorRef){}
 
-  private miCronometro$ = new Observable<number>(subcriptor => {
+  private miCronometro = new Observable<number>(subcriptor => {
     console.log('!Suscripcion iniciada! El Observable Frio de despierta.');
 
     let contador = 0;
@@ -39,9 +38,8 @@ export class App implements OnDestroy {
     if(this.estaCorriendo) return;
 
     this.estaCorriendo = true;
-    this.mensajeFinal = '';
 
-    this.suscripcion = this.miCronometro$.subscribe({
+    this.suscripcion = this.miCronometro.subscribe({
       next: (valor) =>{
         this.tiempoActual = valor;
         this.cdr.detectChanges();
@@ -55,15 +53,6 @@ export class App implements OnDestroy {
     }
     this.estaCorriendo = false;
     this.tiempoActual = 0;
-    this.mensajeFinal = '';
-  }
-
-  entregar(){
-    if(this.suscripcion){
-      this.suscripcion.unsubscribe();
-    }
-    this.estaCorriendo = false;
-    this.mensajeFinal = 'Entrega de cronometro desplegado';
   }
 
   ngOnDestroy(){

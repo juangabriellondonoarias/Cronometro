@@ -102,16 +102,4 @@ $blanco: #ffffff;
       border-style: solid; // Al hacer hover se vuelve sólido
     }
   }
-
-  // El mensaje final que aparece abajo
-  .mensaje-final {
-    margin-top: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-    background-color: lighten($azul-principal, 30%);
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: 1px solid $azul-principal;
-  }
 }
